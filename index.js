@@ -48,8 +48,41 @@ const TOGGLE_TODO='TOGGLE_TODO'
 const ADD_GOAL= 'ADD_GOAL'
 const REMOVE_GOAL='REMOVE_GOAL'
 
-// Create todo reducers-
+// Action Creators- These are just functions which returns action object
 
+const addTodo=(todo)=>{
+return {
+  type: ADD_TODO,
+  todo: todo
+}
+}
+const removeTodo=(id)=>{
+return {
+  type: REMOVE_TODO,
+  id: id
+}
+}
+const toggleTodo=(id)=>{
+return {
+  type: TOGGLE_TODO,
+  id: id
+}
+}
+const addGoal=(goal)=>{
+return {
+  type: ADD_GOAL,
+  goal: goal
+}
+}
+const removeGoal=(id)=>{
+  return {
+    type: REMOVE_GOAL,
+    id: id
+  }
+
+}
+
+// Create todo reducers-
 function todos(state = [], action) {
   switch (action.type) {
     case ADD_TODO:
@@ -68,7 +101,6 @@ function todos(state = [], action) {
 }
 
 // Create goals reducers-
-
 function goals(state = [], action) {
   switch (action.type) {
     case ADD_GOAL:
@@ -100,60 +132,36 @@ store.subscribe(() => {
 });
 
 // Dispatch actions
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 0,
-    name: "Walk the dog",
-    complete: false
-  }
-});
+store.dispatch(addTodo({
+  id: 0,
+  name: "Create my own redux library",
+  complete: false
+}));
 
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 1,
-    name: "Wash the car",
-    complete: false
-  }
-});
+store.dispatch(addTodo({
+  id: 1,
+  name: "Write the code",
+  complete: false
+}));
 
-store.dispatch({
-  type: ADD_TODO,
-  todo: {
-    id: 2,
-    name: "Go to the gym",
-    complete: true
-  }
-});
+store.dispatch(addTodo({
+  id: 2,
+  name: "Sleep",
+  complete: true
+}));
 
-store.dispatch({
-  type: REMOVE_TODO,
-  id: 1
-});
+store.dispatch(removeTodo(2));
 
-store.dispatch({
-  type: TOGGLE_TODO,
-  id: 0
-});
+store.dispatch(toggleTodo(0));
 
-store.dispatch({
-  type: ADD_GOAL,
-  goal: {
-    id: 0,
-    name: "Learn Redux"
-  }
-});
+store.dispatch(addGoal({
+  id: 0,
+  name: "Become a better developer"
+}));
 
-store.dispatch({
-  type: ADD_GOAL,
-  goal: {
-    id: 1,
-    name: "Lose 20 pounds"
-  }
-});
+store.dispatch(addGoal({
+  id: 1,
+  name: "Get a Girl friend"
+}));
 
-store.dispatch({
-  type: REMOVE_GOAL,
-  id: 0
-});
+store.dispatch(removeGoal(1));

@@ -5,6 +5,7 @@ function createStore(reducer) {
   1. State
   2. Get the state
   3. Subscribe to changes
+  4. Update the state
   */
 
   let state;
@@ -86,69 +87,66 @@ function app(state = {}, action) {
 // Create the store-
 const store = createStore(app);
 
-// A sample method which will subscribe to the store
-function logger(store) {
-  console.log("Current state", store.getState());
-}
-
 // Subscribing to store changes
-store.subscribe(logger(store));
+store.subscribe(() => {
+  console.log("The new state is: ", store.getState());
+});
 
 // Dispatch actions
 store.dispatch({
-  type: 'ADD_TODO',
+  type: "ADD_TODO",
   todo: {
     id: 0,
-    name: 'Walk the dog',
-    complete: false,
+    name: "Walk the dog",
+    complete: false
   }
-})
+});
 
 store.dispatch({
-  type: 'ADD_TODO',
+  type: "ADD_TODO",
   todo: {
     id: 1,
-    name: 'Wash the car',
-    complete: false,
+    name: "Wash the car",
+    complete: false
   }
-})
+});
 
 store.dispatch({
-  type: 'ADD_TODO',
+  type: "ADD_TODO",
   todo: {
     id: 2,
-    name: 'Go to the gym',
-    complete: true,
+    name: "Go to the gym",
+    complete: true
   }
-})
+});
 
 store.dispatch({
-  type: 'REMOVE_TODO',
+  type: "REMOVE_TODO",
   id: 1
-})
+});
 
 store.dispatch({
-  type: 'TOGGLE_TODO',
+  type: "TOGGLE_TODO",
   id: 0
-})
+});
 
 store.dispatch({
-  type: 'ADD_GOAL',
+  type: "ADD_GOAL",
   goal: {
     id: 0,
-    name: 'Learn Redux'
+    name: "Learn Redux"
   }
-})
+});
 
 store.dispatch({
-  type: 'ADD_GOAL',
+  type: "ADD_GOAL",
   goal: {
     id: 1,
-    name: 'Lose 20 pounds'
+    name: "Lose 20 pounds"
   }
-})
+});
 
 store.dispatch({
-  type: 'REMOVE_GOAL',
+  type: "REMOVE_GOAL",
   id: 0
-})
+});
